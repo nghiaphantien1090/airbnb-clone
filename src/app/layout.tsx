@@ -23,9 +23,7 @@ export default function RootLayout({
           <>
             <div className='fixed w-full'>
               <Container>
-                <>
                   <Navbar />
-                </>
               </Container>
             </div>
             {children}

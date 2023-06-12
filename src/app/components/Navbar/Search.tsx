@@ -29,8 +29,9 @@ const Search = () => {
 				border-[1px]
 				bg-white
 				hover:shadow-md
-				${isExpandSearch?'top-20 scale-150 invisible':''}	
-				transition-all
+				${isExpandSearch?'top-20 scale-150 invisible ':''}	
+				duration-75
+				transition-transform
 			`
 			)}
 		>
@@ -42,8 +43,9 @@ const Search = () => {
 					w-full
 					h-auto
 					p-1
-					transition-all
-					${isExpandSearch?'top-[-24px] h-16 visible scale-150':'top-[-30px] invisible'}	
+					transition-transform
+					duration-150
+					${isExpandSearch?'top-[-40px] h-16 visible scale-150':'top-[-30px] invisible'}	
 				
 				`)}
 				>
