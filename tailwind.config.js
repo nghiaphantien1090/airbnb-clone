@@ -6,12 +6,18 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    screens:{
+      'xs':'550px',
+      'sm':'744px',
+      'md':'950px',
+      'lg':'1128px',
+      'xl':'1440px'
+    },
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
+      flexGrow: {
+        2: '2'
+      }
+      
     },
   },
   plugins: [],
