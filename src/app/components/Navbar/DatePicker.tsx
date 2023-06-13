@@ -26,33 +26,21 @@ const DatePicker = () => {
                 h-48 
                 bg-white
                 rounded-xl
-                scroll
-                p-4
-                
             ' 
         >
-            <h6 
-                className='
-                    text-[7px]
-                    font-semibold 
-                    text-slate-700
-                    pb-3
-                '>
-               Pick Date 
-            </h6>
             <div
                 className='
-                    flex flex-row scale-[.67] w-full
+                    right-0 top-0 w-100 transform-origin-left scale-[.67]  flex flex-row   gap-0 p-2
                 '>
                     <DateRange
-                        className='relative right-0 scale-[.67] '
+                        className='transform-origin-left w-100 top-0 scale-[.67] '
                         editableDateInputs={false}
                         onChange={item => setState([item.selection])}
                         moveRangeOnFirstSelection={false}
                         ranges={state}
                     />
                     <DateRange
-                        className='w-full scale-[.67]'
+                        className='scale-[.67] transform-origin-left flex-grow -translate-x-[80px] '
                         editableDateInputs={false}
                         onChange={item => setState([item.selection])}
                         moveRangeOnFirstSelection={false}

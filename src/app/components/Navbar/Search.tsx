@@ -116,7 +116,7 @@ const Search = () => {
 							{ selectDay==='Stays'?<Stays/>:<Experiences/>}	
 							<InputGuests/>
 						</div>	
-				<DatePicker/>
+					<DatePicker/>
 				</form>
 			<button className='my-auto px-4 text-[#222222] font-semibold'>Any Where</button>
 			<button className='my-auto px-4 text-[#222222] font-semibold'>Any Week</button>
