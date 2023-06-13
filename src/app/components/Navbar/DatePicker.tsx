@@ -1,29 +1,20 @@
+
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css'; 
-import {Calendar, DateRange,Range} from 'react-date-range'
+import {Calendar} from 'react-date-range'
 import { useState } from 'react';
 const DatePicker = () => {
-    
-    const PropsDateRange:Range={
-        startDate:new Date(),
-        endDate:undefined,
-        key:'selection'
-    }
-    
-    const [state, setState] = useState([
-       PropsDateRange
-    ]);
 
-
+    const [date,setDate]=useState<Date|undefined>(undefined)
     const handleChangeDate=(date: any)=>{
-        console.log(date)
+        setDate(date)
     }
 
     return (
         <div
             className='
                 absolute
-                top-[110px]
+                top-[120px]
                 w-full
                 h-auto 
                 bg-white
@@ -35,17 +26,13 @@ const DatePicker = () => {
                 className='
                     flex flex-row justify-between 
                 '>
-                    <DateRange
-                        editableDateInputs={false}
-                        onChange={item => setState([item.selection])}
-                        moveRangeOnFirstSelection={false}
-                        ranges={state}
+                    <Calendar
+                        date={date}
+                        onChange={handleChangeDate}
                     />
-                    <DateRange
-                        editableDateInputs={false}
-                        onChange={item => setState([item.selection])}
-                        moveRangeOnFirstSelection={false}
-                        ranges={state}
+                    <Calendar
+                        date={date}
+                        onChange={handleChangeDate}
                     />
             </div>
         </div>

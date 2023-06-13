@@ -6,9 +6,10 @@ const InputWhere = () => {
         <div
             className='
 								text-[12px]
+                                w-1/3
 								hover:rounded-full
-								px-4
-								py-[0.5px]
+								px-6
+								py-[9px]
 								cursor-pointer
 								hover:bg-slate-100	 
 								flex
@@ -27,7 +28,6 @@ const InputWhere = () => {
                 className=' outline-none font-normal'
                 placeholder='Search destinations'
             />
-
         </div>
 
     );

@@ -11,6 +11,43 @@
   -webkit-text-size-adjust: 100%;
 }
 
+@layer components{
+  .maxWidthContainer{
+     @apply sm:px-8 md:px-8 lg:px-8 px-8 wideWraper mx-auto overflow-hidden 
+  }
+  .wideWraper{
+    @apply max-w-[1400px]
+  }
+  .h-bg-hero{
+    @apply h-[680px]
+  }
+  .navbar{
+    @apply h-20
+  }
+  .background-img{
+    @apply before:md:h-[680px] before:-z-10  before:inset-x-0 before:absolute
+     before:object-cover before:bg-auto before:h-[500px]  before:bg-slate-700  
+  }  
+  .fontSearch{
+    font-family: 'Domaine Display'
+  }
+  .fontDomainDisplay{
+    font-family: 'Domaine Display'
+  }
+  .primaryBtn{
+    @apply bg-green-600 text-white w-auto px-6 py-3 rounded-md
+  }
+  .fadeNavigator{
+    @apply -z-10
+  }
+  .hover-underline{
+    @apply after:absolute after:w-[40%]  after:h-[1px] after:top-12 after:bg-slate-500
+    after:left-10 hover:after:bg-red-500
+    hover:after:ease-in-out
+    
+  }
+  
+}
 
 body {
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;

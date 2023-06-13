@@ -12,9 +12,9 @@ const DetailRegion = () => {
         <div
             className='
                 absolute
-                top-[70px]
-                w-56
-                h-48 
+                top-[110px]
+                w-1/2
+                h-72
                 overflow-scroll
                 bg-white
                 rounded-xl
@@ -24,10 +24,10 @@ const DetailRegion = () => {
         >
             <h6 
                 className='
-                    text-[7px]
+                    text-[12px]
                     font-semibold 
                     text-slate-700
-                    pb-3
+                    pb-6
                 '>
                 Search by Region
             </h6>
@@ -78,7 +78,7 @@ const RegionListing :React.FC<PropsRegion>=(
             />
             <p 
                 className='
-                    text-[6px]
+                    text-[12px]
                     pt-1
                 '
             >

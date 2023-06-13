@@ -11,7 +11,11 @@ import WhereInput from './InputCheckIn';
 import InputWhere from './InputWhere';
 import InputGuests from './InputGuests';
 import DetailRegion from './DetailRegion';
+import RangeDatePicker from './DateRangePicker';
 import DatePicker from './DatePicker';
+import { DateRangePicker } from 'react-date-range';
+import ToogleSearch from './ToogleSearch';
+import SearchSubmit from './SearchSubmit';
 
 const Search = () => {
 
@@ -47,7 +51,6 @@ const Search = () => {
 				h-12
 				flex
 				flex-row
-				
 				rounded-full	
 				border-gray-200
 				border-[1px]
@@ -71,7 +74,6 @@ const Search = () => {
 						transition-transform
 						duration-150
 						${isExpandSearch?'top-[-50px] -left-1/2 visible w-[200%] h-[150%]  ':'top-[-30px]  invisible'}	
-					
 					`)}
 					>
 						<div className='
@@ -113,36 +115,28 @@ const Search = () => {
 							flex
 							border-solid
 							border-[0.5px]
-							
-
 						'>
 							<InputWhere/>
-							{ selectDay==='Stays'?<Stays/>:<Experiences/>}	
+							<div className='flex-grow flex flex-row'>
+								{selectDay === 'Stays' ? 
+								<Stays /> : <Experiences />}	
+							</div>
 							<InputGuests/>
 						</div>	
-					<DatePicker/>
+					<RangeDatePicker/>
 				</form>
 			</div>
-			<button className='my-auto px-4 text-[#222222] font-semibold'>Any Where</button>
-			<button className='my-auto px-4 text-[#222222] font-semibold'>Any Week</button>
+			<button className='my-auto px-4 text-[#222222] font-semibold'>
+				Any Where
+			</button>
+			<button className='my-auto px-4 text-[#222222] font-semibold'>
+				Any Week
+			</button>
 			<div className='flex flex-row'>
 				<button className='my-auto px-4 text-[#717171] font-semibold' >
 					Add Guests
 				</button>
-				<button
-					onClick={handleExpandSearch}
-					className='
-						w-8
-						h-8
-						my-auto
-						rounded-full
-						bg-[#ff385c]	
-						mr-2
-						p-2
-					'
-					>
-					<BiSearch fill=' white' />		
-				</button>
+				<ToogleSearch onClick={handleExpandSearch} type='button'/>
 			</div>
 		</div>
 	</div>

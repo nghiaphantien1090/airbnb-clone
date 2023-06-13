@@ -12,8 +12,12 @@ export default function Home() {
   }
 ]);
   return (
-      <main className=''>
-          <div className='mt-40 w-full scale-150'>
+      <main className='mt-40'>
+          <div className='flex flex-row w-100vw'>
+            <div className='w-1/4'>abc123</div>
+            <div className='w-1/4'>abc12222</div>
+            <div className='w-1/4'>abc6666</div>
+            <div className='w-1/4'>abc9999</div>
           </div>
       </main>
   )
