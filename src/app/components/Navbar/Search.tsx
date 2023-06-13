@@ -47,39 +47,42 @@ const Search = () => {
 				h-12
 				flex
 				flex-row
+				
 				rounded-full	
 				border-gray-200
 				border-[1px]
 				bg-white
 				hover:shadow-md
-				${isExpandSearch?'top-20 scale-150 invisible ':''}	
+				${isExpandSearch?'top-20 scale-[1.2] invisible ':''}	
 				duration-75
 				transition-transform
 			`
 			)}
 		>
+			<div className=''>
 				<form 
 					className={clsx(`
 						absolute
+						top-[-70px]
+						-left-1/2
 						flex
 						flex-col
-						w-full
 						h-auto
 						transition-transform
 						duration-150
-						${isExpandSearch?'top-[-40px] h-16 visible scale-150':'top-[-30px] invisible'}	
+						${isExpandSearch?'top-[-50px] -left-1/2 visible w-[200%] h-[150%]  ':'top-[-30px]  invisible'}	
 					
 					`)}
 					>
 						<div className='
-							p-2
+							p-4
 							flex
 							flex-row
 							justify-between
 							w-1/2
 							mx-auto
 							text-slate-600
-							text-[7px]
+							text-[14px]
 							font-normal
 						'>
 							<button 
@@ -110,6 +113,7 @@ const Search = () => {
 							flex
 							border-solid
 							border-[0.5px]
+							
 
 						'>
 							<InputWhere/>
@@ -118,6 +122,7 @@ const Search = () => {
 						</div>	
 					<DatePicker/>
 				</form>
+			</div>
 			<button className='my-auto px-4 text-[#222222] font-semibold'>Any Where</button>
 			<button className='my-auto px-4 text-[#222222] font-semibold'>Any Week</button>
 			<div className='flex flex-row'>

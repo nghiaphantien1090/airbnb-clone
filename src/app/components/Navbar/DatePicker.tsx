@@ -1,16 +1,19 @@
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css'; 
-import {Calendar, DateRange} from 'react-date-range'
+import {Calendar, DateRange,Range} from 'react-date-range'
 import { useState } from 'react';
 const DatePicker = () => {
     
-    const [state, setState] = useState([
-    {
-      startDate: new Date(),
-      endDate: null,
-      key: 'selection'
+    const PropsDateRange:Range={
+        startDate:new Date(),
+        endDate:undefined,
+        key:'selection'
     }
-  ]);
+    
+    const [state, setState] = useState([
+       PropsDateRange
+    ]);
+
 
     const handleChangeDate=(date: any)=>{
         console.log(date)
@@ -20,27 +23,25 @@ const DatePicker = () => {
         <div
             className='
                 absolute
-                top-[70px]
+                top-[110px]
                 w-full
-                left-0
-                h-48 
+                h-auto 
                 bg-white
                 rounded-xl
+                p-2
             ' 
         >
             <div
                 className='
-                    right-0 top-0 w-100 transform-origin-left scale-[.67]  flex flex-row   gap-0 p-2
+                    flex flex-row justify-between 
                 '>
                     <DateRange
-                        className='transform-origin-left w-100 top-0 scale-[.67] '
                         editableDateInputs={false}
                         onChange={item => setState([item.selection])}
                         moveRangeOnFirstSelection={false}
                         ranges={state}
                     />
                     <DateRange
-                        className='scale-[.67] transform-origin-left flex-grow -translate-x-[80px] '
                         editableDateInputs={false}
                         onChange={item => setState([item.selection])}
                         moveRangeOnFirstSelection={false}
@@ -51,9 +52,5 @@ const DatePicker = () => {
     );
 }
 
-type PropsRegion={
-    src:any
-    label:string
-}
 
 export default DatePicker;

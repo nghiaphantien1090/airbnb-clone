@@ -14,16 +14,17 @@ const InputGuests = () => {
 
     return (
 					  <div className='
-							text-[6px]
+							text-[12px]
 							hover:rounded-full
 							py-1
 							pr-1
-							pl-2
+							pl-6
 							cursor-pointer
 						 	hover:bg-slate-100	 
 							flex-grow
 							flex
 							justify-between
+					
 						'>
 							<div className='flex flex-col justify-center'>
 								<label
@@ -44,10 +45,10 @@ const InputGuests = () => {
 									my-auto
 									rounded-full
 									bg-[#ff385c]	
-									p-2
+									p-3
 								'
 							>
-								<BiSearch fill=' white' size={8} />
+								<BiSearch fill=' white' size={16} />
 							</button>
 						</div> 
 

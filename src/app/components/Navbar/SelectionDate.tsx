@@ -18,7 +18,7 @@ const SelectionDate:React.FC<PropsSelection>= (
         <div
             className={clsx(
                 `
-                        text-[6px]
+                        text-[12px]
                         hover:rounded-full
                         cursor-pointer
                         hover:bg-slate-100	 

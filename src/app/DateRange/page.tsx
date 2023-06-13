@@ -14,14 +14,6 @@ export default function Home() {
   return (
       <main className=''>
           <div className='mt-40 w-full scale-150'>
-              <DateRangePicker
-                  onChange={item => setState([item.selection])}
-                  showSelectionPreview={true}
-                  moveRangeOnFirstSelection={false}
-                  months={2}
-                  ranges={state}
-                  direction="horizontal"
-              />;
           </div>
       </main>
   )
