@@ -8,7 +8,7 @@ const Container = ({children}:Children) => {
 	return (
 		<div
 			className='
-				xl:px-20
+				xl:px-20 
 			' 
 		>
 			{children}

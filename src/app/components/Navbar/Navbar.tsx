@@ -1,31 +1,47 @@
 import clsx from "clsx";
-import Container from "../Container";
 import Account from "./Account";
 import HostHome from "./HostHome";
 import Language from "./Language";
 import Logo from "./Logo";
 import Search from "./Search";
+import { useAppSelector } from "@/app/hook/hookRedux";
 
 const Navbar = () => {
+
+	const isExpandSearch = useAppSelector(state=>state.toogleSearch.isExpanded)
+
 	return (
 		<div>
 			<div
-				className='
-					fixed
+				className={clsx(
+					`fixed
+					top-0
+					right-0
 					bg-[#00000040]
 					w-screen
 					h-screen
-				'>
+					opacity-75
+					${isExpandSearch?'visible':'invisible'}
+					`
+				)}
+				>
 			</div>
 			<div
 				className={clsx(`
-					relative
+					md:px-10
+					px-5
+					fixed
+					top-0
+					right-0
+					w-screen
 					bg-white
-					pb-20
+					transition-transform
+				    border-b-[1px]
+					border-b-slate-200
+					${isExpandSearch?'pb-20':'pb-0'}
 				`)}>
 				<div
 					className='
-				
 				w-full
 				z-50
 				h-20
