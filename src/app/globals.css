@@ -2,10 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
 
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
 }
 
+@layer components{
+  .maxWidthContainer{
+     @apply sm:px-8 md:px-8 lg:px-8 px-8 wideWraper mx-auto overflow-hidden 
+  }
+  .wideWraper{
+    @apply max-w-[1400px]
+  }
+  .h-bg-hero{
+    @apply h-[680px]
+  }
+  .navbar{
+    @apply h-20
+  }
+  .background-img{
+    @apply before:md:h-[680px] before:-z-10  before:inset-x-0 before:absolute
+     before:object-cover before:bg-auto before:h-[500px]  before:bg-slate-700  
+  }  
+  .fontSearch{
+    font-family: 'Domaine Display'
+  }
+  .fontDomainDisplay{
+    font-family: 'Domaine Display'
+  }
+  .primaryBtn{
+    @apply bg-green-600 text-white w-auto px-6 py-3 rounded-md
+  }
+  .fadeNavigator{
+    @apply -z-10
+  }
+  .hover-underline{
+    @apply after:absolute after:w-[40%]  after:h-[1px] after:top-12 after:bg-slate-500
+    after:left-10 hover:after:bg-red-500
+    hover:after:ease-in-out
+    
+  }
+  
+}
 
 body {
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
@@ -14,16 +56,42 @@ body {
   color: #222;
   background-color: #fff;
   margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  outline: none;
-  caret: inherit;
-  caret: initial;
-  caret: unset;
 }
 input{
   outline: none;
 }
 .border-1{
   border-width: 1px;
+}
+::-webkit-scrollbar-corner{
+  background-color: rgb(218, 215, 215) 
+}
+
+.scroll {
+  overflow-y: auto;
+}
+
+.scroll:active::-webkit-scrollbar-thumb,
+.scroll:focus::-webkit-scrollbar-thumb,
+.scroll:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+.scroll::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    visibility: hidden;
+}
+
+.scroll::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+.overflow-x-hidden{
+  overflow-x: hidden;
+};
+.overflow-y-scroll{
+  overflow-y: scroll;
+}
+.transform-origin-left{
+  transform-origin: left;
 }

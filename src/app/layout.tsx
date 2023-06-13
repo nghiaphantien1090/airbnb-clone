@@ -21,11 +21,7 @@ export default function RootLayout({
       <body>
         <Provider store={store}>
           <>
-            <div className='fixed w-full'>
-              <Container>
-                  <Navbar />
-              </Container>
-            </div>
+            <Navbar />
             {children}
           </>
         </Provider>
