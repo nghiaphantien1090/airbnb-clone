@@ -1,19 +1,27 @@
 import clsx from "clsx";
+import InputTab from "./InputTab";
 import SelectionDate from "./SelectionDate";
+import { PropsInputTab } from "./InputTab";
 
-const InputCheckIn = () => {
+const InputCheckIn : React.FC<PropsInputTab>= (
+    {
+        selectedInputTab
+    }
+) => {
 
-const handleClick=()=>{
-}
     return (
-        <SelectionDate 
-            onClick={handleClick}
-            title='Check in'
-            subTitle='Add Dates'
-            styleItem={clsx(
-                `px-4`
-            )}
-        />
+        <InputTab 
+            selectedInputTab={selectedInputTab} 
+            className='w-1/2'
+        >
+            <SelectionDate
+                title='Check in'
+                subTitle='Add Dates'
+                styleItem={clsx(
+                    `px-4`
+                )}
+            />
+        </InputTab>
     );
 }
 

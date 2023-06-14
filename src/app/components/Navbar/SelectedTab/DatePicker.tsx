@@ -3,6 +3,7 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css'; 
 import {Calendar} from 'react-date-range'
 import { useState } from 'react';
+import Tab from './Tab';
 const DatePicker = () => {
 
     const [date,setDate]=useState<Date|undefined>(undefined)
@@ -11,15 +12,9 @@ const DatePicker = () => {
     }
 
     return (
-        <div
+        <Tab
             className='
-                absolute
-                top-[120px]
                 w-full
-                h-auto 
-                bg-white
-                rounded-xl
-                p-2
             ' 
         >
             <div
@@ -35,7 +30,7 @@ const DatePicker = () => {
                         onChange={handleChangeDate}
                     />
             </div>
-        </div>
+        </Tab>
     );
 }
 

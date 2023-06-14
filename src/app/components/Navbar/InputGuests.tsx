@@ -3,8 +3,12 @@ import { BiSearch } from "react-icons/bi";
 import { setExpandSearch } from "@/app/redux/reducer/SearchSlide";
 import SearchSubmit from "./SearchSubmit";
 import { PropsButton } from "./Button";
+import { useState } from "react";
+import { useSelectTab } from "@/app/hook/hook";
 
 const InputGuests = () => {
+
+	const [isShowSubmitBtn,setIsShowSubmitBtn]= useState(false)
  
 	const dispatch = useAppDispatch()
 	const isExpandSearch = useAppSelector(state=>state.toogleSearch.isExpanded)	
@@ -13,9 +17,18 @@ const InputGuests = () => {
 		dispatch(setExpandSearch())
 		console.log(isExpandSearch)
 	}
+	
+	const {selectTab}=useSelectTab()
+
+	const handleClick=()=>{
+		setIsShowSubmitBtn(prev=>!prev||true)
+		selectTab({selectingTab:'addGuestTab'})
+	}
 
 	return (
-		<div className='
+		<div 
+			onClick={handleClick}
+			className='
 							text-[12px]
 							w-1/3
 							hover:rounded-full
@@ -40,8 +53,11 @@ const InputGuests = () => {
 					Add Guests
 				</p>
 			</div>
-			{/* <ToogleSearch onClick={handleExpandSearch} type='button' /> */}
-			<SearchSubmit onClick={handleExpandSearch} type='button'/>
+			{
+				isShowSubmitBtn?
+				<SearchSubmit onClick={handleExpandSearch} type='button'/>
+				:<ToogleSearch onClick={handleExpandSearch} type='button' />
+			}
 		</div>
 
 	);

@@ -5,10 +5,14 @@ const Stays = () => {
     return (
         <div 
             className='
-                flex flex-row gap-4 
+                flex flex-row justify-between h-full
             '>
-            <InputCheckIn/>
-            <InputCheckOut/>
+            <InputCheckIn 
+                selectedInputTab={{selectingTab:'checkInTab'}} 
+            />
+            <InputCheckOut
+                selectedInputTab={{selectingTab:'checkOutTab'}} 
+            />
         </div>
     );
 }
