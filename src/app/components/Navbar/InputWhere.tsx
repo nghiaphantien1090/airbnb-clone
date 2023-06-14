@@ -1,34 +1,43 @@
-const InputWhere = () => {
-    const handleShowWhere = () => {
+import { useAppSelector } from "@/app/hook/hookRedux";
+import clsx from "clsx";
+import InputTab from "./InputTab";
+import { PropsInputTab } from "./InputTab";
 
-    }
+const InputWhere:React.FC<PropsInputTab>= (
+    {selectedInputTab}
+) => {
+
+	const activeTab=useAppSelector(state=>state.selectTabSearch.selectingTab)
+    console.log('re-render Where')
+    const color = activeTab===selectedInputTab.selectingTab?'bg-white group-hover:bg-white':
+    activeTab!==undefined?'group-hover:bg-slate-100 bg-slate-200':'bg-white group-hover:bg-slate-100'
+
     return (
-        <div
+        <InputTab
             className='
 								text-[12px]
                                 w-1/3
-								hover:rounded-full
 								px-6
 								py-[9px]
-								cursor-pointer
-								hover:bg-slate-100	 
 								flex
 								flex-col
 								justify-center
 							'
-            onClick={handleShowWhere}
+            selectedInputTab={selectedInputTab}
         >
-            <label
-                className='block font-semibold text-slate-600'
-            >
-                Where
-            </label>
-            <input
-                type='text'
-                className=' outline-none font-normal'
-                placeholder='Search destinations'
-            />
-        </div>
+            <>
+                <label
+                    className='block font-semibold text-slate-600'
+                >
+                    Where
+                </label>
+                <input
+                    type='text'
+                    className={clsx(`  outline-none font-normal `,color)}
+                    placeholder='Search destinations'
+                />
+            </>
+        </InputTab>
 
     );
 }

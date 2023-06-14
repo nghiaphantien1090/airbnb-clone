@@ -3,8 +3,9 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css'; 
 import {DateRange,Range} from 'react-date-range'
 import { useState } from 'react';
+import Tab, { PropsShownTab } from './Tab';
 
-const RangeDatePicker = () => {
+const RangeDatePicker=() => {
     
     const PropsDateRange:Range={
         startDate:new Date(),
@@ -17,22 +18,13 @@ const RangeDatePicker = () => {
     ]);
 
     return (
-        <div
-            className='
-                absolute
-                top-[110px]
-                w-full
-                h-auto 
-                bg-white
-                rounded-xl
-                p-2
-            ' 
-        >
+        <Tab className='w-full'>
             <div
                 className='
-                    flex flex-row justify-between 
+                   flex flex-row justify-between gap-4 w-full 
                 '>
                     <DateRange
+                        className='w-1/2 '
                         editableDateInputs={false}
                         showDateDisplay={false}
                         onChange={item => setState([item.selection])}
@@ -40,7 +32,7 @@ const RangeDatePicker = () => {
                         ranges={state}
                     />
                     <DateRange
-                        showPreview={false}
+                        className='w-1/2 flex-grow '
                         showDateDisplay={false}
                         editableDateInputs={false}
                         onChange={item => setState([item.selection])}
@@ -48,7 +40,7 @@ const RangeDatePicker = () => {
                         ranges={state}
                     />
             </div>
-        </div>
+        </Tab>
     );
 }
 

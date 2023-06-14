@@ -1,6 +1,4 @@
 import clsx from "clsx";
-import { Children, CSSProperties, HtmlHTMLAttributes, ReactElement, StyleHTMLAttributes } from "react";
-import { ClassificationTypeNames } from "typescript";
 
 export type PropsSelection={
     title:string
@@ -11,7 +9,6 @@ export type PropsSelection={
 const SelectionDate:React.FC<PropsSelection>= (
     {title,
     subTitle,
-    onClick,
     styleItem}
 ) => {
     return (
@@ -19,18 +16,16 @@ const SelectionDate:React.FC<PropsSelection>= (
             className={clsx(
                 `
                         text-[12px]
-                        hover:rounded-full
                         cursor-pointer
-                        hover:bg-slate-100	 
                         flex
                         flex-col
                         justify-center
+                        h-full
                     `,
                 styleItem
             )}
-            onClick={onClick}
         >
-            <div className='flex flex-col justify-center'>
+            <div className='flex flex-col justify-center h-full'>
                 <>
                     <label
                         className='block font-semibold text-slate-600'

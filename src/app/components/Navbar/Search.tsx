@@ -1,30 +1,24 @@
 'use client'
 
-import {BiSearch} from 'react-icons/bi' 
-import { useAppDispatch ,useAppSelector} from '@/app/hook/hookRedux';
-import { setExpandSearch } from '@/app/redux/reducer/SearchSlide';
 import clsx from 'clsx';
 import { useState } from 'react';
+
+import { useAppDispatch ,useAppSelector} from '@/app/hook/hookRedux';
+import { setExpandSearch } from '@/app/redux/reducer/SearchSlide';
+
+import {useSelectTab} from '../../hook/hook'
+
 import Stays from './Stays';
 import Experiences from './Experiences';
-import WhereInput from './InputCheckIn';
 import InputWhere from './InputWhere';
 import InputGuests from './InputGuests';
-import DetailRegion from './DetailRegion';
-import RangeDatePicker from './DateRangePicker';
-import DatePicker from './DatePicker';
-import { DateRangePicker } from 'react-date-range';
 import ToogleSearch from './ToogleSearch';
-import SearchSubmit from './SearchSubmit';
+import ShownTab from './SelectedTab/ShownTab';
 
 const Search = () => {
 
 	const dispatch = useAppDispatch()
 	const isExpandSearch = useAppSelector(state=>state.toogleSearch.isExpanded)	
-
-	const handleShowWhere=()=>{
-
-	}
 	
 	type SelectDay='Stays'|'Experiences';
 	const[selectDay,setSelectDay] = useState<SelectDay>('Stays')
@@ -37,10 +31,14 @@ const Search = () => {
 		setSelectDay('Experiences')
 	}
 
+	const {selectTab}= useSelectTab()
+
 	const handleExpandSearch = ()=>{
 		dispatch(setExpandSearch())
-		console.log(isExpandSearch)
+		selectTab({selectingTab:undefined})
 	}
+
+	const selectedTab=useAppSelector(state=>state.selectTabSearch.selectingTab)
 	
 	return (
 	<div className='relative px-6 my-auto'>
@@ -56,9 +54,10 @@ const Search = () => {
 				border-[1px]
 				bg-white
 				hover:shadow-md
-				${isExpandSearch?'top-20 scale-[1.2] invisible ':''}	
 				duration-75
 				transition-transform
+				${isExpandSearch ? 'top-20 scale-[1.2] invisible ' : ''}	
+				${selectedTab !== undefined ? 'shadow-2xl' : ''}
 			`
 			)}
 		>
@@ -73,7 +72,9 @@ const Search = () => {
 						h-auto
 						transition-transform
 						duration-150
-						${isExpandSearch?'top-[-50px] -left-1/2 visible w-[200%] h-[150%]  ':'top-[-30px]  invisible'}	
+						${isExpandSearch?
+						'top-[-50px] -left-1/2 visible w-[200%] h-[150%]'
+						:'top-[-30px]  invisible'}	
 					`)}
 					>
 						<div className='
@@ -108,22 +109,31 @@ const Search = () => {
 							</button>
 							<a className='my-auto'>Online Experiences</a>
 						</div>
-						<div className='
-							w-full
+						<div className={clsx(
+							`w-full
 							rounded-full
-							bg-white
 							flex
+							flex-row
 							border-solid
 							border-[0.5px]
-						'>
-							<InputWhere/>
-							<div className='flex-grow flex flex-row'>
+							${selectedTab !== undefined ? 'shadow-2xl bg-slate-200' : ''}
+							`
+						)}
+						>
+							<InputWhere 
+								selectedInputTab={{ selectingTab: 'destinationTab' }}
+							/>
+							<div className='flex-grow flex '>
+								<div className='flex-grow h-full'>
 								{selectDay === 'Stays' ? 
 								<Stays /> : <Experiences />}	
+								</div>
 							</div>
 							<InputGuests/>
 						</div>	
-					<RangeDatePicker/>
+						{
+							<ShownTab/>
+						}
 				</form>
 			</div>
 			<button className='my-auto px-4 text-[#222222] font-semibold'>
