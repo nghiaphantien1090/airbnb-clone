@@ -7,7 +7,8 @@ import Guest from "./Guest";
 
 const ShownTab = () => {
 
-	const selectedTab=useAppSelector(state=>state.selectTabSearch.selectingTab)
+	const selectedTab=useAppSelector(
+        state=>state.selectTabSearch.selectingTab)
 
     return ( 
         <>

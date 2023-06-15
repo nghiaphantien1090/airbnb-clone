@@ -4,7 +4,6 @@ import store from './redux/store'
 import Container from './components/Container'
 import Navbar from './components/Navbar/Navbar'
 import './globals.css'
-import ExpandedSearch from './components/Navbar/ExpandedSearch'
 
 export const metadata = {
   title: 'AirBnB App',
