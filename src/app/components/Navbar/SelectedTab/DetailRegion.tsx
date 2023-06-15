@@ -1,13 +1,23 @@
 import Image from 'next/image';
+
 import flexible from '../../../../../public/flexible.jpeg'
 import usa from '../../../../../public/usa.jpeg'
 import thailand from '../../../../../public/thailand.jpeg'
 import southkorea from '../../../../../public/southkorea.jpeg'
 import australia from '../../../../../public/australia.jpeg'
 import europe from '../../../../../public/europe.jpeg'
+
 import Tab from './Tab';
 
+import { useAppDispatch } from '@/app/hook/hookRedux';
+import { selectDestination } from '@/app/redux/reducer/SearchSlide';
+
 const DetailRegion = () => {
+
+    const dispatch= useAppDispatch()
+    const handleSelectDestination=(destination:Destination)=>{
+        dispatch(selectDestination(destination))
+    }
 
     return (
         <Tab
@@ -36,12 +46,12 @@ const DetailRegion = () => {
                     gap-2
                 '
                 >
-                    <RegionListing src={flexible} label={`I'm flexible`} />
-                    <RegionListing src={usa} label={`Usa`} />
-                    <RegionListing src={thailand} label={`Thai Land`} />
-                    <RegionListing src={australia} label={`Australia`} />
-                    <RegionListing src={southkorea} label={`South Korea`} />
-                    <RegionListing src={europe} label={`Europe`} />
+                    <RegionListing onClick={()=>handleSelectDestination('flexible')} src={flexible} label={`I'm flexible`} />
+                    <RegionListing onClick={()=>handleSelectDestination('usa')} src={usa} label={`Usa`} />
+                    <RegionListing onClick={()=>handleSelectDestination('thailand')} src={thailand} label={`Thai Land`} />
+                    <RegionListing onClick={()=>handleSelectDestination('australia')} src={australia} label={`Australia`} />
+                    <RegionListing onClick={()=>handleSelectDestination('southkorea')} src={southkorea} label={`South Korea`} />
+                    <RegionListing onClick={()=>handleSelectDestination('europe')} src={europe} label={`Europe`} />
                 </div>
 
             </>
@@ -49,16 +59,21 @@ const DetailRegion = () => {
     );
 }
 
+export type Destination='flexible'|'europe'|'australia'|'thailand'|'usa'|'southkorea'
+
 type PropsRegion = {
     src: any
     label: string
+    onClick:()=>void
 }
 
 const RegionListing: React.FC<PropsRegion> = (
-    { src, label }
+    { src, label ,onClick}
 ) => {
     return (
-        <div
+        <button
+            onClick={onClick}
+            type='button'
             className='
             '
         >
@@ -82,7 +97,7 @@ const RegionListing: React.FC<PropsRegion> = (
             >
                 {label}
             </p>
-        </div>
+        </button>
     )
 }
 

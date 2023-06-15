@@ -8,7 +8,6 @@ const InputWhere:React.FC<PropsInputTab>= (
 ) => {
 
 	const activeTab=useAppSelector(state=>state.selectTabSearch.selectingTab)
-    console.log('re-render Where')
     const color = activeTab===selectedInputTab.selectingTab?'bg-white group-hover:bg-white':
     activeTab!==undefined?'group-hover:bg-slate-100 bg-slate-200':'bg-white group-hover:bg-slate-100'
 

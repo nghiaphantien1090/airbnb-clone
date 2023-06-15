@@ -37,6 +37,9 @@ const Search = () => {
 		dispatch(setExpandSearch())
 		selectTab({selectingTab:undefined})
 	}
+	
+	const bookingState = useAppSelector(state=>state.booking)
+	console.log(bookingState)
 
 	const selectedTab=useAppSelector(state=>state.selectTabSearch.selectingTab)
 	
