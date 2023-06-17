@@ -1,7 +1,7 @@
 'use client'
 
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useAppDispatch ,useAppSelector} from '@/app/hook/hookRedux';
 import { setExpandSearch } from '@/app/redux/reducer/SearchSlide';
@@ -33,11 +33,12 @@ const Search = () => {
 
 	const {selectTab}= useSelectTab()
 
+
 	const handleExpandSearch = ()=>{
 		dispatch(setExpandSearch())
 		selectTab({selectingTab:undefined})
 	}
-	
+
 	const bookingState = useAppSelector(state=>state.booking)
 	console.log(bookingState)
 

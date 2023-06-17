@@ -2,6 +2,7 @@ import clsx from "clsx";
 import InputTab from "./InputTab";
 import SelectionDate from "./SelectionDate";
 import { PropsInputTab } from "./InputTab";
+import {memo} from 'react'
 
 const InputCheckIn : React.FC<PropsInputTab>= (
     {
@@ -25,4 +26,4 @@ const InputCheckIn : React.FC<PropsInputTab>= (
     );
 }
 
-export default InputCheckIn;
+export default memo(InputCheckIn);

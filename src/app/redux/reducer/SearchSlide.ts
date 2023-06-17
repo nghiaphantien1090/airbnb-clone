@@ -50,6 +50,7 @@ export const selectDestination=createAction<string>('booking/selectDestination')
 export const selectCheckInDate=createAction<Date>('booking/selectCheckInDate')
 export const selectCheckOutDate=createAction<Date>('booking/selecCheckOutDate')
 export const addGuest=createAction<GuestType>('booking/addGuest')
+export const removeGuest =createAction<GuestType>('booking/removeGuest')
 
 export type  GuestType='adult'|'children'|'infant'|'pet'
 
@@ -104,7 +105,7 @@ const BookingReducer = createReducer(initBooking,
 
       .addCase(addGuest, (state, action) => {
 
-        if (action.payload === 'adult') {
+        if (action.payload === 'adult' && !state.isEqualMaxChildrenAdult) {
           const updatedNumberGuest = {
             ...state.numberGuest,
             adult: state?.numberGuest.adult + 1
@@ -112,53 +113,131 @@ const BookingReducer = createReducer(initBooking,
           return { ...state, numberGuest: updatedNumberGuest }
         }
 
+        if (action.payload === 'children'&& !state.isEqualMaxChildrenAdult) {
+          const updatedNumberGuest = {
+            ...state.numberGuest,
+            children: state?.numberGuest.children + 1
+          };
+          return { ...state, numberGuest: updatedNumberGuest }
+        }
+
+        if (action.payload === 'infant' && !state.isEqualMaxInfant) {
+          const updatedNumberGuest = {
+            ...state.numberGuest,
+            infant: state?.numberGuest.infant + 1
+          };
+          return { ...state, numberGuest: updatedNumberGuest }
+        }
+
+        if (action.payload === 'pet' && !state.isEqualMaxPet) {
+          const updatedNumberGuest = {
+            ...state.numberGuest,
+            pet: state?.numberGuest.pet + 1
+          };
+          return { ...state, numberGuest: updatedNumberGuest }
+        }
+      })
+
+      .addCase(removeGuest, (state, action) => {
+
+        if (action.payload === 'adult' ) {
+          const updatedNumberGuest = {
+            ...state.numberGuest,
+            adult:state.numberGuest.adult>0? state?.
+            numberGuest.adult -1:state.numberGuest.adult
+          };
+          return { ...state, numberGuest: updatedNumberGuest }
+        }
+
         if (action.payload === 'children') {
           const updatedNumberGuest = {
             ...state.numberGuest,
-            adult: state?.numberGuest.children + 1
+            children: state.numberGuest.children>0?state?.
+            numberGuest.children - 1:state.numberGuest.children
           };
           return { ...state, numberGuest: updatedNumberGuest }
         }
 
-        if (action.payload === 'infant') {
+        if (action.payload === 'infant' ) {
           const updatedNumberGuest = {
             ...state.numberGuest,
-            adult: state?.numberGuest.infant + 1
+            infant: state.numberGuest.infant>0?
+            state?.numberGuest.infant - 1:
+            state.numberGuest.infant
           };
           return { ...state, numberGuest: updatedNumberGuest }
         }
 
-        if (action.payload === 'pet') {
+        if (action.payload === 'pet' ) {
           const updatedNumberGuest = {
             ...state.numberGuest,
-            adult: state?.numberGuest.pet + 1
+            pet: state.numberGuest.pet>0?state?.numberGuest.pet - 1:
+            state.numberGuest.pet
           };
           return { ...state, numberGuest: updatedNumberGuest }
         }
       })
 
       .addMatcher(
-        action => action.type === addGuest.type && ['adult', 'children'].includes(action.payload),
+        action => action.type === addGuest.type || action.type === removeGuest.type
+          && ['adult', 'children'].includes(action.payload),
         (state, action) => {
-          const adultChildrenCount = state.numberGuest.adult + state.numberGuest.children ;
+
+          let isEqualMaxChildrenAdult = false
+
+          const adultChildrenCount = state.numberGuest.adult + state.numberGuest.children;
+
           if (adultChildrenCount === state.maxAdultChildren) {
-            return {...state,isEqualMaxChildrenAdult:true}
+            isEqualMaxChildrenAdult = true
           }
+
+          return { ...state, isEqualMaxChildrenAdult }
+
         }
       )
 
       .addMatcher(
-        action => action.type === addGuest.type && ['infant', 'pet'].includes(action.payload),
+        action => action.type === addGuest.type || action.type === removeGuest.type
+          && ['infant', 'pet'].includes(action.payload),
         (state, action) => {
-          if (state.numberGuest.infant=== state.maxInfant) {
-            return {...state,isEqualMaxInfant:true}
+
+          let isEqualMaxInfant = false
+          if (state.numberGuest.infant === state.maxInfant) {
+            isEqualMaxInfant = true
           }
-          if (state.numberGuest.pet=== state.maxPet) {
-            return {...state,isEqualMaxPet:true}
+
+          let isEqualMaxPet = false
+          if (state.numberGuest.pet === state.maxPet) {
+            isEqualMaxPet = true
           }
+          return { ...state, isEqualMaxInfant, isEqualMaxPet }
         }
       )
   }
 )
 
 export {BookingReducer}
+
+export type GuestControlType='add'|'remove'
+
+interface GuestControl {
+  (guestType: GuestType): {
+    ControlType(controlType: GuestControlType):void 
+  };
+}
+
+const control: GuestControl = (guest: GuestType) => {
+  return {
+    ControlType: (control: GuestControlType) => {
+      return {
+        Quantity: (quantity: number) => {
+
+          
+
+        }
+      }
+    },
+  };
+};
+
+control('adult').ControlType('add').Quantity(23)
