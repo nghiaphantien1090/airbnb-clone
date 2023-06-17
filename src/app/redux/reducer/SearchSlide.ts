@@ -1,6 +1,7 @@
 'use client'
 import { createAction, createReducer} from '@reduxjs/toolkit';
 import { createECDH } from 'crypto';
+import { stat } from 'fs';
 import { type } from 'os';
 
 //Hide or show search bar when toogle button search
@@ -51,13 +52,19 @@ export const selectCheckInDate=createAction<Date>('booking/selectCheckInDate')
 export const selectCheckOutDate=createAction<Date>('booking/selecCheckOutDate')
 export const addGuest=createAction<GuestType>('booking/addGuest')
 export const removeGuest =createAction<GuestType>('booking/removeGuest')
+export const removeAllGuest =createAction('booking/removeAllGuest')
+export const removeDestination =createAction('booking/removeDestination')
+export const removeCheckInDate=createAction('booking/removeCheckInDate')
+export const removeCheckOutDate=createAction('booking/removeCheckOutDate')
+
+
 
 export type  GuestType='adult'|'children'|'infant'|'pet'
 
 export type BookingInfoState = {
   destination?: string,
-  checkInDate?: Date,
-  checkOutDate?: Date,
+  checkInDate?: Date|string,
+  checkOutDate?: Date|string,
   numberGuest: {
     [key in GuestType]:number 
   },
@@ -81,7 +88,9 @@ const initBooking: BookingInfoState = {
   maxAdultChildren: 16,
   isEqualMaxChildrenAdult:false,
   isEqualMaxInfant:false,
-  isEqualMaxPet:false
+  isEqualMaxPet:false,
+  checkInDate:'23-Jul',
+  checkOutDate:'24-Jul'
   
 }
 
@@ -138,6 +147,24 @@ const BookingReducer = createReducer(initBooking,
         }
       })
 
+      .addCase(removeDestination,(state,action)=>{
+        return{
+          ...state,destination:undefined
+        }
+      })
+
+      .addCase(removeCheckInDate,(state,action)=>{
+        return{
+          ...state,checkInDate:undefined
+        }
+      })
+
+      .addCase(removeCheckOutDate,(state,action)=>{
+        return{
+          ...state,checkOutDate:undefined
+        }
+      })
+
       .addCase(removeGuest, (state, action) => {
 
         if (action.payload === 'adult' ) {
@@ -175,6 +202,19 @@ const BookingReducer = createReducer(initBooking,
             state.numberGuest.pet
           };
           return { ...state, numberGuest: updatedNumberGuest }
+        }
+      })
+
+      .addCase(removeAllGuest, (state, action) => {
+        console.log(action.type)
+        const numberGuest = {
+          ...state.numberGuest, adult: 0,
+          children: 0, infant: 0, pet: 0
+        }
+        return {
+          ...state, isEqualMaxChildrenAdult:false,
+          isEqualMaxInfant: false, isEqualMaxPet: false,
+          numberGuest
         }
       })
 
@@ -220,24 +260,3 @@ export {BookingReducer}
 
 export type GuestControlType='add'|'remove'
 
-interface GuestControl {
-  (guestType: GuestType): {
-    ControlType(controlType: GuestControlType):void 
-  };
-}
-
-const control: GuestControl = (guest: GuestType) => {
-  return {
-    ControlType: (control: GuestControlType) => {
-      return {
-        Quantity: (quantity: number) => {
-
-          
-
-        }
-      }
-    },
-  };
-};
-
-control('adult').ControlType('add').Quantity(23)
