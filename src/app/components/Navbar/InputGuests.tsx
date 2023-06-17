@@ -13,9 +13,9 @@ const InputGuests = () => {
 	const dispatch = useAppDispatch()
 	const isExpandSearch = useAppSelector(state=>state.toogleSearch.isExpanded)	
 
+
 	const handleExpandSearch = ()=>{
 		dispatch(setExpandSearch())
-		console.log(isExpandSearch)
 	}
 	
 	const {selectTab}=useSelectTab()

@@ -2,13 +2,16 @@ import { useAppSelector } from "@/app/hook/hookRedux";
 import clsx from "clsx";
 import InputTab from "./InputTab";
 import { PropsInputTab } from "./InputTab";
+import {memo, useCallback} from 'react'
+import React from "react";
 
 const InputWhere:React.FC<PropsInputTab>= (
     {selectedInputTab}
 ) => {
 
-	const activeTab=useAppSelector(state=>state.selectTabSearch.selectingTab)
-    const color = activeTab===selectedInputTab.selectingTab?'bg-white group-hover:bg-white':
+    const activeTab = useAppSelector(state => state.selectTabSearch.selectingTab)
+
+    const color = activeTab === selectedInputTab.selectingTab ? 'bg-white group-hover:bg-white' :
     activeTab!==undefined?'group-hover:bg-slate-100 bg-slate-200':'bg-white group-hover:bg-slate-100'
 
     return (
@@ -41,4 +44,4 @@ const InputWhere:React.FC<PropsInputTab>= (
     );
 }
 
-export default InputWhere;
+export default React.memo (InputWhere);

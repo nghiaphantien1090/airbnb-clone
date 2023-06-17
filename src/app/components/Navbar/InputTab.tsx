@@ -1,8 +1,9 @@
 import clsx, { ClassValue } from "clsx"
-import { HtmlHTMLAttributes, ReactElement } from "react"
+import { HtmlHTMLAttributes, ReactElement, useCallback, useMemo } from "react"
 import { SelectedInputTab } from "@/app/redux/reducer/SearchSlide"
 import { useSelectTab } from "@/app/hook/hook"
 import { useAppSelector } from "@/app/hook/hookRedux"
+import {memo} from 'react'
 
 export type PropsInputTab={
     onClick?:()=>void
@@ -23,10 +24,9 @@ const InputTab: React.FC<PropsInputTab> = (
     
 	const selectedTab=useAppSelector(state=>state.selectTabSearch.selectingTab)
 
-    const handleClick=()=>{
-        selectTab(selectedInputTab)
-    }
-    const changeColor = selectedTab===selectedInputTab.selectingTab?'bg-white shadow-2xl':' hover:bg-slate-100 hover:shadow-2xl'
+    const handleClick = ()=>selectTab(selectedInputTab)
+
+    const changeColor =selectedTab===selectedInputTab.selectingTab?'bg-white shadow-2xl':' hover:bg-slate-100 hover:shadow-2xl'
 
     return (
         <div
@@ -46,4 +46,4 @@ const InputTab: React.FC<PropsInputTab> = (
     );
 }
 
-export default InputTab;
+export default memo(InputTab);

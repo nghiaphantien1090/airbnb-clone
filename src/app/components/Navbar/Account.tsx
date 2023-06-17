@@ -1,6 +1,9 @@
 import {IoMenuOutline} from 'react-icons/io5'
 import {BsPersonCircle} from 'react-icons/bs'
+import {memo} from 'react'
+
 const Account = () => {
+	 
 		return (
 				<div
 					className='
@@ -24,4 +27,4 @@ const Account = () => {
 		);
 }
  
-export default Account;
+export default memo(Account);
