@@ -32,7 +32,7 @@ const SelectionDate:React.FC<PropsSelection>= (
                     >
                         {title}
                     </label>
-                    <p className='block'>
+                    <p className='block overflow-auto'>
                         {subTitle}
                     </p>
                 </>

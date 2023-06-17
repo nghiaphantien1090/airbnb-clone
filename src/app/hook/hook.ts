@@ -23,22 +23,22 @@ const useSelectTab = () => {
 
 interface GuestControl {
   (guestType: GuestType): {
-    ControlType(controlType: GuestControlType):ActionCreatorWithPayload<GuestType,string>
+    ControlType(controlType: GuestControlType):any
   };
 }
 
 const GuestAction: GuestControl = (guest: GuestType) => {
   return {
     ControlType: (control: GuestControlType) => {
-        let action
+        let useAction
         if(control==='add'){
-            action=  addGuest(guest) as any
+            useAction=  addGuest(guest) as any
 
         }
         if(control==='remove'){
-            action= removeGuest(guest) as any
+            useAction= removeGuest(guest) as any
         }
-        return action
+        return useAction
     },
   };
 };

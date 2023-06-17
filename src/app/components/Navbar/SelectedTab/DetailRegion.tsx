@@ -18,7 +18,7 @@ const DetailRegion = () => {
     const handleSelectDestination=(destination:Destination)=>{
         dispatch(selectDestination(destination))
     }
-
+    
     return (
         <Tab
             className='

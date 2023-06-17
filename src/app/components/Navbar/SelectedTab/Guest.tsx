@@ -31,39 +31,39 @@ const Guest = () => {
 		return bookingState.isEqualMaxPet
 	},[bookingState.isEqualMaxPet])
 
-	const handlePlusAdult = useCallback(()=>{
+	const handlePlusAdult = ()=>{
 		dispatch(GuestAction('adult').ControlType('add'))
-	},[dispatch])
+	}
 
-	const handlePlusChildren= useCallback(()=>{
+	const handlePlusChildren= ()=>{
 		dispatch(GuestAction('children').ControlType('add'))
-	},[dispatch])
+	}
 
-	const handlePlusInfant= useCallback(()=>{
+	const handlePlusInfant= ()=>{
 		dispatch(GuestAction('infant').ControlType('add'))
-	},[dispatch])
+	}
 
-	const handlePlusPet= useCallback(()=>{
+	const handlePlusPet= ()=>{
 		dispatch(GuestAction('pet').ControlType('add'))
-	},[dispatch])
+	}
 
 	//remove guest
 
-	const handleRemoveAdult = useCallback(()=>{
+	const handleRemoveAdult = ()=>{
 		dispatch(GuestAction('adult').ControlType('remove'))
-	},[dispatch])
+	}
 
-	const handleRemoveChildren= useCallback(()=>{
+	const handleRemoveChildren= ()=>{
 		dispatch(GuestAction('children').ControlType('remove'))
-	},[dispatch])
+	}
 
-	const handleRemoveInfant= useCallback(()=>{
+	const handleRemoveInfant= ()=>{
 		dispatch(GuestAction('infant').ControlType('remove'))
-	},[dispatch])
+	}
 
-	const handleRemovePet= useCallback(()=>{
+	const handleRemovePet= ()=>{
 		dispatch(GuestAction('pet').ControlType('remove'))
-	},[dispatch])
+	}
 	
 		return (
 				<Tab
@@ -125,7 +125,7 @@ type PropsGuest={
 		minusGuest:()=>void		
 		plusGuest:()=>void		
 }
-const GuestItem: React.FC<PropsGuest> = memo(({
+const GuestItem: React.FC<PropsGuest> = ({
 	type, description, minusGuest, plusGuest, numberGuest, disablePlus: disable
 }) => {
 
@@ -204,9 +204,10 @@ const GuestItem: React.FC<PropsGuest> = memo(({
 		</div>
 	)
 }
-)
+
 
 export default Guest
+export {GuestItem }
 
 
 

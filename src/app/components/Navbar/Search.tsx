@@ -1,7 +1,7 @@
 'use client'
 
 import clsx from 'clsx';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { useAppDispatch ,useAppSelector} from '@/app/hook/hookRedux';
 import { setExpandSearch } from '@/app/redux/reducer/SearchSlide';
@@ -14,6 +14,8 @@ import InputWhere from './InputWhere';
 import InputGuests from './InputGuests';
 import ToogleSearch from './ToogleSearch';
 import ShownTab from './SelectedTab/ShownTab';
+import Button from './Button';
+import ExpandButton from './ExpandButton';
 
 const Search = () => {
 
@@ -34,13 +36,42 @@ const Search = () => {
 	const {selectTab}= useSelectTab()
 
 
-	const handleExpandSearch = ()=>{
+	const handleExpandSearch = useCallback(() => {
 		dispatch(setExpandSearch())
-		selectTab({selectingTab:undefined})
-	}
+		selectTab({ selectingTab: undefined })
+	}, [dispatch,selectTab]) 
+	
+	const handleExpandDes=useCallback(()=>{
+		dispatch(setExpandSearch())
+		selectTab({selectingTab:'destinationTab'})
+	},[selectTab,dispatch])
 
 	const bookingState = useAppSelector(state=>state.booking)
+	const checkIn = bookingState.checkInDate
+	const checkOut = bookingState.checkOutDate
+	const handleExpandDate=useCallback(()=>{
+		if(!checkIn)
+		{
+			dispatch(setExpandSearch())
+			selectTab({selectingTab:'checkInTab'})
+			return
+		}
+		if(!checkOut)
+		{
+			dispatch(setExpandSearch())
+			selectTab({selectingTab:'checkOutTab'})
+			return
+		}
+			dispatch(setExpandSearch())
+			selectTab({selectingTab:'checkInTab'})
+
+	},[selectTab,dispatch,checkIn,checkOut])
+
+	const rangeDateBooking = checkIn&&checkOut?`${checkIn}-${checkOut}`:undefined 
+
 	console.log(bookingState)
+
+	const guestLiting  = bookingState.numberGuest
 
 	const selectedTab=useAppSelector(state=>state.selectTabSearch.selectingTab)
 	
@@ -125,6 +156,7 @@ const Search = () => {
 						)}
 						>
 							<InputWhere 
+								
 								selectedInputTab={{ selectingTab: 'destinationTab' }}
 							/>
 							<div className='flex-grow flex '>
@@ -133,19 +165,21 @@ const Search = () => {
 								<Stays /> : <Experiences />}	
 								</div>
 							</div>
-							<InputGuests/>
+							<InputGuests numberGuest={guestLiting}/>
 						</div>	
 						{
 							<ShownTab/>
 						}
 				</form>
 			</div>
-			<button className='my-auto px-4 text-[#222222] font-semibold'>
-				Any Where
-			</button>
-			<button className='my-auto px-4 text-[#222222] font-semibold'>
-				Any Week
-			</button>
+			<ExpandButton
+				handleExpand={handleExpandDes}
+				state={bookingState.destination||'Anywhere'}
+			/>
+			<ExpandButton
+				handleExpand={handleExpandDate}
+				state={rangeDateBooking||'Anyweek'}
+			/>
 			<div className='flex flex-row'>
 				<button className='my-auto px-4 text-[#717171] font-semibold' >
 					Add Guests
