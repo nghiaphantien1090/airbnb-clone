@@ -95,3 +95,27 @@ input{
 .transform-origin-left{
   transform-origin: left;
 }
+.date-range .rdrDefinedRangesWrapper{
+  display: none;
+}
+ .date-range .rdrMonthName{
+  text-align: center;
+}
+ .date-range .rdrMonthAndYearPickers{
+  display: none;
+}
+ .date-range .rdrMonthAndYearWrapper{
+  position: absolute;
+  width: 650px;
+  top:-17px
+}
+.date .rdrDefinedRangesWrapper{
+  display: none;
+}
+ .date .rdrMonthName{
+  text-align: center;
+}
+ .date .rdrMonthAndYearPickers{
+}
+ .date .rdrMonthAndYearWrapper{
+}

@@ -14,7 +14,7 @@ const DatePicker = () => {
     return (
         <Tab
             className='
-                w-full
+                w-full date
             ' 
         >
             <div
@@ -22,10 +22,12 @@ const DatePicker = () => {
                     flex flex-row justify-between 
                 '>
                     <Calendar
+                        className='w-1/2'
                         date={date}
                         onChange={handleChangeDate}
                     />
                     <Calendar
+                        className='w-1/2'
                         date={date}
                         onChange={handleChangeDate}
                     />

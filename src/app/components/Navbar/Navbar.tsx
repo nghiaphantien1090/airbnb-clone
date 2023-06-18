@@ -59,7 +59,6 @@ const Navbar = () => {
 					flex
 					flex-row	
 					gap-2
-					
 				'
 					>
 						<HostHome />

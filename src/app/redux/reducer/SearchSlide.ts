@@ -65,7 +65,7 @@ export type BookingInfoState = {
   destination?: string,
   checkInDate?: Date|string,
   checkOutDate?: Date|string,
-  numberGuest: {
+  guestListing: {
     [key in GuestType]:number 
   },
   maxAdultChildren:number
@@ -77,7 +77,7 @@ export type BookingInfoState = {
 }
 
 const initBooking: BookingInfoState = {
-  numberGuest: {
+  guestListing: {
     'adult': 0,
     'children': 0,
     'infant': 0,
@@ -116,34 +116,34 @@ const BookingReducer = createReducer(initBooking,
 
         if (action.payload === 'adult' && !state.isEqualMaxChildrenAdult) {
           const updatedNumberGuest = {
-            ...state.numberGuest,
-            adult: state?.numberGuest.adult + 1
+            ...state.guestListing,
+            adult: state?.guestListing.adult + 1
           };
-          return { ...state, numberGuest: updatedNumberGuest }
+          return { ...state, guestListing: updatedNumberGuest }
         }
 
         if (action.payload === 'children'&& !state.isEqualMaxChildrenAdult) {
           const updatedNumberGuest = {
-            ...state.numberGuest,
-            children: state?.numberGuest.children + 1
+            ...state.guestListing,
+            children: state?.guestListing.children + 1
           };
-          return { ...state, numberGuest: updatedNumberGuest }
+          return { ...state, guestListing: updatedNumberGuest }
         }
 
         if (action.payload === 'infant' && !state.isEqualMaxInfant) {
           const updatedNumberGuest = {
-            ...state.numberGuest,
-            infant: state?.numberGuest.infant + 1
+            ...state.guestListing,
+            infant: state?.guestListing.infant + 1
           };
-          return { ...state, numberGuest: updatedNumberGuest }
+          return { ...state, guestListing: updatedNumberGuest }
         }
 
         if (action.payload === 'pet' && !state.isEqualMaxPet) {
           const updatedNumberGuest = {
-            ...state.numberGuest,
-            pet: state?.numberGuest.pet + 1
+            ...state.guestListing,
+            pet: state?.guestListing.pet + 1
           };
-          return { ...state, numberGuest: updatedNumberGuest }
+          return { ...state, guestListing: updatedNumberGuest }
         }
       })
 
@@ -169,52 +169,52 @@ const BookingReducer = createReducer(initBooking,
 
         if (action.payload === 'adult' ) {
           const updatedNumberGuest = {
-            ...state.numberGuest,
-            adult:state.numberGuest.adult>0? state?.
-            numberGuest.adult -1:state.numberGuest.adult
+            ...state.guestListing,
+            adult:state.guestListing.adult>0? state?.
+            guestListing.adult -1:state.guestListing.adult
           };
-          return { ...state, numberGuest: updatedNumberGuest }
+          return { ...state, guestListing: updatedNumberGuest }
         }
 
         if (action.payload === 'children') {
           const updatedNumberGuest = {
-            ...state.numberGuest,
-            children: state.numberGuest.children>0?state?.
-            numberGuest.children - 1:state.numberGuest.children
+            ...state.guestListing,
+            children: state.guestListing.children>0?state?.
+            guestListing.children - 1:state.guestListing.children
           };
-          return { ...state, numberGuest: updatedNumberGuest }
+          return { ...state, guestListing: updatedNumberGuest }
         }
 
         if (action.payload === 'infant' ) {
           const updatedNumberGuest = {
-            ...state.numberGuest,
-            infant: state.numberGuest.infant>0?
-            state?.numberGuest.infant - 1:
-            state.numberGuest.infant
+            ...state.guestListing,
+            infant: state.guestListing.infant>0?
+            state?.guestListing.infant - 1:
+            state.guestListing.infant
           };
-          return { ...state, numberGuest: updatedNumberGuest }
+          return { ...state, guestListing: updatedNumberGuest }
         }
 
         if (action.payload === 'pet' ) {
           const updatedNumberGuest = {
-            ...state.numberGuest,
-            pet: state.numberGuest.pet>0?state?.numberGuest.pet - 1:
-            state.numberGuest.pet
+            ...state.guestListing,
+            pet: state.guestListing.pet>0?state?.guestListing.pet - 1:
+            state.guestListing.pet
           };
-          return { ...state, numberGuest: updatedNumberGuest }
+          return { ...state, guestListing: updatedNumberGuest }
         }
       })
 
       .addCase(removeAllGuest, (state, action) => {
         console.log(action.type)
         const numberGuest = {
-          ...state.numberGuest, adult: 0,
+          ...state.guestListing, adult: 0,
           children: 0, infant: 0, pet: 0
         }
         return {
           ...state, isEqualMaxChildrenAdult:false,
           isEqualMaxInfant: false, isEqualMaxPet: false,
-          numberGuest
+          guestListing: numberGuest
         }
       })
 
@@ -225,7 +225,7 @@ const BookingReducer = createReducer(initBooking,
 
           let isEqualMaxChildrenAdult = false
 
-          const adultChildrenCount = state.numberGuest.adult + state.numberGuest.children;
+          const adultChildrenCount = state.guestListing.adult + state.guestListing.children;
 
           if (adultChildrenCount === state.maxAdultChildren) {
             isEqualMaxChildrenAdult = true
@@ -242,12 +242,12 @@ const BookingReducer = createReducer(initBooking,
         (state, action) => {
 
           let isEqualMaxInfant = false
-          if (state.numberGuest.infant === state.maxInfant) {
+          if (state.guestListing.infant === state.maxInfant) {
             isEqualMaxInfant = true
           }
 
           let isEqualMaxPet = false
-          if (state.numberGuest.pet === state.maxPet) {
+          if (state.guestListing.pet === state.maxPet) {
             isEqualMaxPet = true
           }
           return { ...state, isEqualMaxInfant, isEqualMaxPet }

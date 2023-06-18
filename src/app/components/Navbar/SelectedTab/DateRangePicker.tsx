@@ -1,15 +1,15 @@
 'use client'
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css'; 
-import {DateRange,Range} from 'react-date-range'
+import {DateRangePicker,Range} from 'react-date-range'
 import { useState } from 'react';
-import Tab, { PropsShownTab } from './Tab';
+import Tab from './Tab';
 
 const RangeDatePicker=() => {
     
     const PropsDateRange:Range={
         startDate:new Date(),
-        endDate:undefined   ,
+        endDate:undefined  ,
         key:'selection'
     }
 
@@ -18,31 +18,24 @@ const RangeDatePicker=() => {
     ]);
 
     return (
-        <Tab className='w-full'>
-            <div
-                className='
-                   flex flex-row justify-between gap-4 w-full 
-                '>
-                    <DateRange
-                        className='w-1/2 '
-                        editableDateInputs={false}
-                        showDateDisplay={false}
-                        onChange={item => setState([item.selection])}
-                        moveRangeOnFirstSelection={false}
-                        ranges={state}
-                    />
-                    <DateRange
-                        className='w-1/2 flex-grow '
-                        showDateDisplay={false}
-                        editableDateInputs={false}
-                        onChange={item => setState([item.selection])}
-                        moveRangeOnFirstSelection={false}
-                        ranges={state}
-                    />
+        <Tab className='date-range w-full my-auto overflow-hidden min-h-[300px]'>
+            <div style={{}} >
+                <DateRangePicker
+                    className='
+                         -translate-x-[10px] 
+                    '
+                    onChange={item => setState([item.selection])}
+                    moveRangeOnFirstSelection={false}
+                    months={12}
+                    ranges={state}
+                    direction="horizontal"
+                    preventSnapRefocus={true}
+                    showDateDisplay={false}
+                    showMonthAndYearPickers={false}
+                />
             </div>
         </Tab>
     );
 }
-
 
 export default RangeDatePicker;
