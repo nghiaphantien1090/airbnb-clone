@@ -35,7 +35,6 @@ const Search = () => {
 
 	const {selectTab}= useSelectTab()
 
-
 	const handleExpandSearch = useCallback(() => {
 		dispatch(setExpandSearch())
 		selectTab({ selectingTab: undefined })
@@ -69,16 +68,21 @@ const Search = () => {
 
 	const rangeDateBooking = checkIn&&checkOut?`${checkIn}-${checkOut}`:undefined 
 
-	console.log(bookingState)
-
-	const guestLiting  = bookingState.numberGuest
+	const guestLiting  = bookingState.guestListing
 
 	const selectedTab=useAppSelector(state=>state.selectTabSearch.selectingTab)
+
+	const handleExpandGuest = useCallback(()=>{
+		dispatch(setExpandSearch())
+		selectTab({selectingTab:'addGuestTab'})
+	},[dispatch,selectTab])
+
+	const totalGuest = Object.values(guestLiting).reduce((a,b)=>a+b)
 	
 	return (
-	<div className='relative px-6 my-auto'>
-		<div
-			className={clsx( `
+		<div className='relative px-6 my-auto'>
+			<div
+				className={clsx(`
 				relative	
 			 	my-auto
 				h-12
@@ -94,11 +98,11 @@ const Search = () => {
 				${isExpandSearch ? 'top-20 scale-[1.2] invisible ' : ''}	
 				${selectedTab !== undefined ? 'shadow-2xl' : ''}
 			`
-			)}
-		>
-			<div className=''>
-				<form 
-					className={clsx(`
+				)}
+			>
+				<div className=''>
+					<form
+						className={clsx(`
 						absolute
 						top-[-70px]
 						-left-1/2
@@ -107,9 +111,9 @@ const Search = () => {
 						h-auto
 						transition-transform
 						duration-150
-						${isExpandSearch?
-						'top-[-50px] -left-1/2 visible w-[200%] h-[150%]'
-						:'top-[-30px]  invisible'}	
+						${isExpandSearch ?
+								'top-[-50px] -left-1/2 visible w-[200%] h-[150%]'
+								: 'top-[-30px]  invisible'}	
 					`)}
 					>
 						<div className='
@@ -123,7 +127,7 @@ const Search = () => {
 							text-[14px]
 							font-normal
 						'>
-							<button 
+							<button
 								onClick={handSelectStays}
 								type='button'
 								className='
@@ -155,40 +159,42 @@ const Search = () => {
 							`
 						)}
 						>
-							<InputWhere 
-								
+							<InputWhere
+
 								selectedInputTab={{ selectingTab: 'destinationTab' }}
 							/>
 							<div className='flex-grow flex '>
 								<div className='flex-grow h-full'>
-								{selectDay === 'Stays' ? 
-								<Stays /> : <Experiences />}	
+									{selectDay === 'Stays' ?
+										<Stays /> : <Experiences />}
 								</div>
 							</div>
-							<InputGuests numberGuest={guestLiting}/>
-						</div>	
+							<InputGuests guestListing={guestLiting} />
+						</div>
 						{
-							<ShownTab/>
+							<ShownTab />
 						}
-				</form>
-			</div>
-			<ExpandButton
-				handleExpand={handleExpandDes}
-				state={bookingState.destination||'Anywhere'}
-			/>
-			<ExpandButton
-				handleExpand={handleExpandDate}
-				state={rangeDateBooking||'Anyweek'}
-			/>
-			<div className='flex flex-row'>
-				<button className='my-auto px-4 text-[#717171] font-semibold' >
-					Add Guests
-				</button>
-				<ToogleSearch onClick={handleExpandSearch} type='button'/>
+					</form>
+				</div>
+				<ExpandButton
+					handleExpand={handleExpandDes}
+					state={bookingState.destination || 'Anywhere'}
+				/>
+				<ExpandButton
+					handleExpand={handleExpandDate}
+					state={rangeDateBooking || 'Anyweek'}
+				/>
+				<div className='flex flex-row'>
+					<ExpandButton
+						handleExpand={handleExpandGuest}
+						state={totalGuest>0?
+							'Guest '+totalGuest: 'Guest'}
+					/>
+					<ToogleSearch onClick={handleExpandSearch} type='button' />
+				</div>
 			</div>
 		</div>
-	</div>
 	);
 }
- 
+
 export default Search;

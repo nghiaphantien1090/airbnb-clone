@@ -14,10 +14,10 @@ const Guest = () => {
 
 	const bookingState = useAppSelector(state=>state.booking)
 
-	const numberAdult = bookingState.numberGuest.adult
-	const numberChildren = bookingState.numberGuest.children
-	const numberInfant = bookingState.numberGuest.infant
-	const numberPet = bookingState.numberGuest.pet
+	const numberAdult = bookingState.guestListing.adult
+	const numberChildren = bookingState.guestListing.children
+	const numberInfant = bookingState.guestListing.infant
+	const numberPet = bookingState.guestListing.pet
 
 	const disabledAdultChildren=useMemo(()=>{
 		return bookingState.isEqualMaxChildrenAdult

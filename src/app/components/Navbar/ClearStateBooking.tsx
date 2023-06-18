@@ -8,6 +8,7 @@ export type PropsClear={
 const ClearStateBooking:React.FC<PropsClear>= ({
 	isShow,onClick
 }) => {
+
 	return (
 		<>
 			<TiDeleteOutline

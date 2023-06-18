@@ -10,17 +10,17 @@ import {TiDeleteOutline} from 'react-icons/ti'
 import clsx from "clsx";
 import { ClearStateBooking } from "./ClearStateBooking";
 
-type GuestListing  = Pick<BookingInfoState,'numberGuest' >
+type GuestListing  = Pick<BookingInfoState,'guestListing' >
 
-const InputGuests :React.FC<GuestListing>= ({numberGuest}) => {
+const InputGuests :React.FC<GuestListing>= ({guestListing}) => {
 
 	const [isShowSubmitBtn,setIsShowSubmitBtn]= useState(false)
  
 	const dispatch = useAppDispatch()
 	const isExpandSearch = useAppSelector(state=>state.toogleSearch.isExpanded)	
 
-	const GuestListing:string = Object.entries(numberGuest).map(([key, value]) => `${key}:${value}`).join(',');
-	const totalGuest = Object.values(numberGuest).reduce((a, b) => a + b);
+	const GuestListing:string = Object.entries(guestListing).map(([key, value]) => `${key}:${value}`).join(',');
+	const totalGuest = Object.values(guestListing).reduce((a, b) => a + b);
 
 	const handleExpandSearch = ()=>{
 		dispatch(setExpandSearch())
@@ -69,7 +69,7 @@ const InputGuests :React.FC<GuestListing>= ({numberGuest}) => {
 				</p>
 			</div>
 			<ClearStateBooking
-				isShow={totalGuest===0?false:true}	
+				isShow={totalGuest>0&&isExpandSearch?true:false}	
 				onClick={handleClear}
 				
 			/>
