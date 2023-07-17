@@ -48,8 +48,9 @@ export{selectInputTab,SelectTabSearchReducer }
 //Booking information
 
 export const selectDestination=createAction<string>('booking/selectDestination')
-export const selectCheckInDate=createAction<Date>('booking/selectCheckInDate')
-export const selectCheckOutDate=createAction<Date>('booking/selecCheckOutDate')
+export const selectDateRange=createAction<Pick<BookingInfoState,'checkInDate'|'checkOutDate'>>('booking/selectDateRange')
+export const selectCheckInDate=createAction< Pick<BookingInfoState,'checkInDate'>>('booking/selectCheckInDate')
+export const selectCheckOutDate=createAction< Pick<BookingInfoState,'checkOutDate'>>('booking/selecCheckOutDate')
 export const addGuest=createAction<GuestType>('booking/addGuest')
 export const removeGuest =createAction<GuestType>('booking/removeGuest')
 export const removeAllGuest =createAction('booking/removeAllGuest')
@@ -57,14 +58,12 @@ export const removeDestination =createAction('booking/removeDestination')
 export const removeCheckInDate=createAction('booking/removeCheckInDate')
 export const removeCheckOutDate=createAction('booking/removeCheckOutDate')
 
-
-
 export type  GuestType='adult'|'children'|'infant'|'pet'
 
 export type BookingInfoState = {
   destination?: string,
-  checkInDate?: Date|string,
-  checkOutDate?: Date|string,
+  checkInDate?: string,
+  checkOutDate?: string,
   guestListing: {
     [key in GuestType]:number 
   },
@@ -89,9 +88,8 @@ const initBooking: BookingInfoState = {
   isEqualMaxChildrenAdult:false,
   isEqualMaxInfant:false,
   isEqualMaxPet:false,
-  checkInDate:'23-Jul',
-  checkOutDate:'24-Jul'
-  
+  checkInDate:undefined,
+  checkOutDate:undefined
 }
 
 const BookingReducer = createReducer(initBooking,
@@ -100,16 +98,21 @@ const BookingReducer = createReducer(initBooking,
     builder
       .addCase(selectDestination,
         (state, action) => {
-          return { ...state, destination: action.payload }
+          return { ...state, destination: action.payload}
         }
       )
-
-      .addCase(selectCheckInDate, (state, action) => {
-        return { ...state, checkInDate: action.payload }
+      .addCase(selectCheckInDate,(state,action)=>{
+        return{...state,checkInDate:action.payload.checkInDate}
       })
 
       .addCase(selectCheckOutDate, (state, action) => {
-        return { ...state, checkOutDate: action.payload }
+        return { ...state, checkOutDate: action.payload.checkOutDate}
+      })
+
+      .addCase(selectDateRange, (state, action) => {
+        console.log(action.payload)
+        return { ...state, checkOutDate: action.payload.checkOutDate,
+        checkInDate:action.payload.checkInDate}
       })
 
       .addCase(addGuest, (state, action) => {

@@ -46,7 +46,6 @@ const InputWhere:React.FC<PropsInputTab>= (
                     flex-row
                     justify-between
                 ' 
-            
             >
             <div>
                 <label

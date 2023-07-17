@@ -8,7 +8,6 @@ type PropsExpand={
 const ExpandButton :React.FC<PropsExpand>=memo( (
     {handleExpand: handleExpand,state}
 ) => {
-    console.log('re-render expand button '+state)
     return ( 
 			<Button 
 				onClick={handleExpand}
