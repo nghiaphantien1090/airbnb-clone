@@ -109,13 +109,21 @@ input{
   width: 650px;
   top:-17px
 }
+
 .date .rdrDefinedRangesWrapper{
   display: none;
 }
  .date .rdrMonthName{
   text-align: center;
 }
- .date .rdrMonthAndYearPickers{
+.date .rdrYearPicker{
+  display: none;
 }
- .date .rdrMonthAndYearWrapper{
+.date .rdrMonthAndYearPickers{
+  display: none;
+}
+.date .rdrMonthAndYearWrapper{
+  position: absolute;
+  width: 650px;
+  top:0px
 }

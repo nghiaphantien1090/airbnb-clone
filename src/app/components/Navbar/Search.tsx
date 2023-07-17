@@ -48,6 +48,7 @@ const Search = () => {
 	const bookingState = useAppSelector(state=>state.booking)
 	const checkIn = bookingState.checkInDate
 	const checkOut = bookingState.checkOutDate
+
 	const handleExpandDate=useCallback(()=>{
 		if(!checkIn)
 		{
@@ -69,7 +70,7 @@ const Search = () => {
 	const rangeDateBooking = checkIn&&checkOut?`${checkIn}-${checkOut}`:undefined 
 
 	const guestLiting  = bookingState.guestListing
-
+	
 	const selectedTab=useAppSelector(state=>state.selectTabSearch.selectingTab)
 
 	const handleExpandGuest = useCallback(()=>{

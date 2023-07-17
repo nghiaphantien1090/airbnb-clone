@@ -71,7 +71,6 @@ const InputGuests :React.FC<GuestListing>= ({guestListing}) => {
 			<ClearStateBooking
 				isShow={totalGuest>0&&isExpandSearch?true:false}	
 				onClick={handleClear}
-				
 			/>
 			{
 				isShowSubmitBtn?
