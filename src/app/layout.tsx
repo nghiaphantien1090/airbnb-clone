@@ -5,7 +5,8 @@ import Container from './components/Container'
 import Navbar from './components/Navbar/Navbar'
 import './globals.css'
 
-export const metadata = {
+ const metadata = {
+  
   title: 'AirBnB App',
   description: 'Fake AirBnB App',
 }
