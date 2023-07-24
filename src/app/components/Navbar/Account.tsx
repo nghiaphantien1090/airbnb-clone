@@ -1,6 +1,7 @@
 import {IoMenuOutline} from 'react-icons/io5'
 import {BsPersonCircle} from 'react-icons/bs'
 import {memo} from 'react'
+import UserMenu from './UserMenu';
 
 const Account = () => {
 	 
@@ -15,8 +16,11 @@ const Account = () => {
 						rounded-full
 						border-[1px]
 						border-slate-200
+						relative
+
 					'	
 				>
+						<UserMenu/>	
 					 	<button className='cursor-pointer'>
 							<IoMenuOutline size={22} />
 						</button>
