@@ -116,14 +116,14 @@ const LoginModal = () => {
                          flex
                          flex-row
                          justify-between
-                         mt-3 
+                         mt-6
                         '>
                             <div className='
                              border-t-[1px]
                               border-slate-500
                              w-[45%]
                            '/>
-                            <span className=' flex-grow text-center'>Or</span>
+                            <span className=' flex-grow text-center text-[10px]'>Or</span>
                             <div className='
                              w-[45%]
                               border-slate-500
