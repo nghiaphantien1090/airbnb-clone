@@ -4,6 +4,7 @@ import store from './redux/store'
 import Container from './components/Container'
 import Navbar from './components/Navbar/Navbar'
 import './globals.css'
+import Modal from './components/Modal/Modal'
 
  const metadata = {
   
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body>
         <Provider store={store}>
           <>
+            <Modal/>
             <Navbar />
             {children}
           </>
