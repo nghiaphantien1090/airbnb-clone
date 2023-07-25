@@ -1,5 +1,5 @@
 import { GoX} from "react-icons/go";
-const Modal = () => {
+const LoginModal = () => {
 
     return (
         <>
@@ -36,7 +36,9 @@ const Modal = () => {
                  my-auto 
                  w-12
                 '>
+                    <button type='button'>
                             <GoX size={16} />
+                    </button>
                         </div>
                         <h6 className='
                 p-3
@@ -44,6 +46,7 @@ const Modal = () => {
                 text-center
                 text-[16px] 
                 text-slate-800
+                font-semibold
                 '>
                             Login or sign up
                         </h6>
@@ -56,7 +59,7 @@ const Modal = () => {
                          text-[20px] 
                          text-black
                         '>
-                            Wecome to AirBnB
+                            Welcome to AirBnB
                         </h2>
                         <div className="
                          w-full p-2 mt-4
@@ -109,6 +112,24 @@ const Modal = () => {
                         '>
                             Continue
                         </button>
+                        <div className='
+                         flex
+                         flex-row
+                         justify-between
+                         mt-3 
+                        '>
+                            <div className='
+                             border-t-[1px]
+                              border-slate-500
+                             w-[45%]
+                           '/>
+                            <span className=' flex-grow text-center'>Or</span>
+                            <div className='
+                             w-[45%]
+                              border-slate-500
+                             border-t-[1px]
+                           '/>
+                        </div>
                     </div>
             </div>
         </div>
@@ -116,4 +137,4 @@ const Modal = () => {
 
     )
 }
-export default Modal 
+export default LoginModal 
