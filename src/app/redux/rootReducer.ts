@@ -1,13 +1,14 @@
 'use client'
 import { combineReducers } from '@reduxjs/toolkit';
 import { BookingReducer, ToogleSearchReducer, SelectTabSearchReducer} from './reducer/SearchSlide';
-import { ShowMenuUserReducer } from './reducer/AccountSlide';
+import { ShowMenuUserReducer, ShowModalReducer } from './reducer/AccountSlide';
 
 const rootReducer = combineReducers({
   toogleSearch: ToogleSearchReducer,
   selectTabSearch:SelectTabSearchReducer,
   booking:BookingReducer,
-  menuUser:ShowMenuUserReducer
+  menuUser:ShowMenuUserReducer,
+  modalLoginLogout:ShowModalReducer
   
 });
 
