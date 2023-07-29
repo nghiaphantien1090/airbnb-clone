@@ -1,4 +1,6 @@
 'use client'
+import { useAppDispatch, useAppSelector } from "@/app/hook/hookRedux"
+import { setShowLoginModal } from "@/app/redux/reducer/AccountSlide"
 import { useRouter } from "next/navigation"
 import React, { ReactElement } from "react"
 
@@ -6,7 +8,10 @@ const UserMenu = ({isShow}:{isShow:boolean}) => {
 
     const router = useRouter()
 
-    const handleUser = () => {
+    const dispath = useAppDispatch()
+    const useSelector = useAppSelector(state=>state.modalLoginLogout.isShowModal)
+    const handleShowLoginModal= () => {
+        dispath(setShowLoginModal())
     }
 
     return (
@@ -34,8 +39,8 @@ const UserMenu = ({isShow}:{isShow:boolean}) => {
              gap-2
              pb-3
             '>
-                <UserLink Content='Login' onClick={handleUser} />
-                <UserLink Content='Signup' onClick={handleUser} />
+                <UserLink Content='Login' onClick={handleShowLoginModal} />
+                <UserLink Content='Signup' onClick={handleShowLoginModal} />
             </div>
             <div className='pt-3 flex flex-col gap-2'>
                 <UserLink Content='Airbnb your home' onClick={() => router.push('/host/home')} />

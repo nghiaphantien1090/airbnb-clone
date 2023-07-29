@@ -5,6 +5,8 @@ import Container from './components/Container'
 import Navbar from './components/Navbar/Navbar'
 import './globals.css'
 import LoginModal from './components/Modal/LoginModal'
+import { SessionProvider } from 'next-auth/react'
+
 
  const metadata = {
   
@@ -20,13 +22,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Provider store={store}>
-          <>
-            <LoginModal/>
-            <Navbar />
-            {children}
-          </>
-        </Provider>
+        <SessionProvider>
+          <Provider store={store}>
+            <>
+              <LoginModal/>
+              <Navbar />
+              {children}
+            </>
+          </Provider>
+        </SessionProvider>
       </body>
     </html>
   )
