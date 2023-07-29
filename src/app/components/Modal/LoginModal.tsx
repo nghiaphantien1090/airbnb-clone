@@ -1,9 +1,26 @@
+import { useAppDispatch, useAppSelector } from "@/app/hook/hookRedux";
+import { setShowLoginModal, setShowMenuUser } from "@/app/redux/reducer/AccountSlide";
 import { ReactElement } from "react";
 import { GoX} from "react-icons/go";
 const LoginModal = () => {
 
+    const isShowLoginModal = useAppSelector(state=>state.modalLoginLogout.isShowModal)
+    const dispatch = useAppDispatch()
+
+    const handleCloseLoginModal = () => {
+        console.log('click close modal.')
+        dispatch(setShowLoginModal())
+        console.log(isShowLoginModal)
+        return
+    } 
+    
+    const handleClickModal=()=>{
+        dispatch(setShowLoginModal())
+        console.log(isShowLoginModal)
+    }
+    
     return (
-        <div className=''>
+        <div className={`${isShowLoginModal?'visible':'hidden'} transition-all`}>
             <div className='
             fixed
             w-full
@@ -11,7 +28,9 @@ const LoginModal = () => {
             bg-[#222222]
              opacity-50
             z-20
-        '>
+        '
+            onClick={handleClickModal}
+        >
             </div>
 
         <div className='h-screen flex justify-center'>
@@ -37,7 +56,7 @@ const LoginModal = () => {
                  my-auto 
                  w-12
                 '>
-                    <button type='button'>
+                    <button type='button' onClick={handleCloseLoginModal}>
                             <GoX size={16} />
                     </button>
                         </div>

@@ -1,6 +1,6 @@
 'use client'
 import { useAppDispatch, useAppSelector } from "@/app/hook/hookRedux"
-import { setShowLoginModal } from "@/app/redux/reducer/AccountSlide"
+import { setShowLoginModal, setShowMenuUser } from "@/app/redux/reducer/AccountSlide"
 import { useRouter } from "next/navigation"
 import React, { ReactElement } from "react"
 
@@ -12,6 +12,7 @@ const UserMenu = ({isShow}:{isShow:boolean}) => {
     const useSelector = useAppSelector(state=>state.modalLoginLogout.isShowModal)
     const handleShowLoginModal= () => {
         dispath(setShowLoginModal())
+        dispath(setShowMenuUser())
     }
 
     return (
@@ -57,9 +58,11 @@ interface PropsLinks {
 }
 
 const UserLink: React.FC<PropsLinks> = ({ Content, onClick }) => {
+    
     return (
         <button type='button'
         className='
+         hover:bg-white
          cursor-pointer
          py-1
          px-4
