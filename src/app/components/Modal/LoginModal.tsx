@@ -1,3 +1,4 @@
+import VerifySms from "./verifySms";
 import { useAppDispatch, useAppSelector } from "@/app/hook/hookRedux";
 import { setShowLoginModal, setShowMenuUser } from "@/app/redux/reducer/AccountSlide";
 import { ReactElement } from "react";
@@ -81,7 +82,9 @@ const LoginModal = () => {
                         '>
                             Welcome to AirBnB
                         </h2>
-                        <div className="
+                        <form
+                        onSubmit={()=>VerifySms} 
+                        className="
                          w-full p-2 mt-4
                         border-1
                         rounded-lg
@@ -113,14 +116,14 @@ const LoginModal = () => {
                                 >
                                 </input>
                             </div>
-                        </div>
+                        </form>
                         <p className='
                          py-2
                          text-[12px] 
                         '>
                             We’ll call or text you to confirm your number. Standard message and data rates apply. Privacy Policy
                         </p>
-                        <button className='
+                        <button type='submit' className='
                         w-full
                         h-12
                         bg-pink-600
@@ -132,6 +135,11 @@ const LoginModal = () => {
                         '>
                             Continue
                         </button>
+
+
+
+
+
                         <div className='
                          flex
                          flex-row
