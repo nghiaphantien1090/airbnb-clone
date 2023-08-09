@@ -2,12 +2,16 @@
 import {IoMenuOutline} from 'react-icons/io5'
 import {BsPersonCircle} from 'react-icons/bs'
 import {memo, useState} from 'react'
-import UserMenu from './UserMenu';
+import UserMenu from '../User/UserMenu'
 import { useAppDispatch, useAppSelector } from '@/app/hook/hookRedux';
 import { setShowMenuUser } from '@/app/redux/reducer/AccountSlide';
-
+import { getSession, useSession } from 'next-auth/react';
 
 const Account = () => {
+
+	const data = useSession() 
+    const session = getSession()
+	console.log('session is :',session)
 
 	const dispath = useAppDispatch()
 	const handleAccount=()=>{
