@@ -1,8 +1,14 @@
-import type { NextAuthOptions } from "next-auth";
+import type { NextAuthOptions} from "next-auth";
+import NextAuth from "next-auth";
 import GitHubProvider from 'next-auth/providers/github'
 import  CredentialsProvider  from "next-auth/providers/credentials";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import { PrismaClient } from "@prisma/client";
+import { MongoClient } from "mongodb";
 
-export const options:NextAuthOptions={
+const prisma = new PrismaClient();
+
+export const options={
     providers:[
        GitHubProvider({
         clientId:process.env.GITHUB_ID  as string,

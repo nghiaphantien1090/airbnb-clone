@@ -7,7 +7,6 @@ import './globals.css'
 import LoginModal from './components/Modal/LoginModal'
 import { SessionProvider } from 'next-auth/react'
 
-
  const metadata = {
   
   title: 'AirBnB App',
@@ -25,8 +24,6 @@ export default function RootLayout({
         <SessionProvider>
           <Provider store={store}>
             <>
-              <LoginModal/>
-              <Navbar />
               {children}
             </>
           </Provider>
