@@ -16,13 +16,14 @@ const LoginLogoutEmail = () => {
         password: '',
     });
 
-    const handleRegisterByEmail = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
     };
+  
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -30,11 +31,11 @@ const LoginLogoutEmail = () => {
         const formDataToSend = new FormData();
         formDataToSend.append('email', formData.email);
         formDataToSend.append('password', formData.password);
-
+        console.log('formdata', formData)
         try {
             const response = await fetch('/api/register', {
                 method: 'POST',
-                body: formDataToSend,
+                body: JSON.stringify({ email: formData.email, password: formData.password }),
             });
 
             if (response.ok) {
@@ -63,7 +64,8 @@ const LoginLogoutEmail = () => {
                                 '>
                     Email
                 </p>
-                <input type='text' name="email" className="
+                <input type='text' name="email" value={formData.email}
+                    onChange={handleInputChange} className="
                                 w-full px-2 py-2 outline-none text-[16px] text-left
                                 "
                 />
@@ -75,7 +77,8 @@ const LoginLogoutEmail = () => {
                                 '>
                     Password
                 </p>
-                <input type='text' name="password" className="
+                <input type='text' name="password" value={formData.password}
+                    onChange={handleInputChange} className="
                                 w-full px-2 py-2 outline-none text-[16px] text-left
                                 "
                 />
