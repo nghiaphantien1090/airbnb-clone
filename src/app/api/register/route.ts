@@ -3,11 +3,11 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import {prisma} from '../../../../lib/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 
-export  async function handle(req:NextRequest ,res:NextResponse) {
+export  async function POST(req:NextRequest ,res:NextResponse) {
   
 
   const { email, password } = await req.json()
-    console.log(email,password)
+    console.log('data',email,password)
   try {
     const hashedPassword = await bcrypt.hash(password, 10) ;
     type DataUser={
@@ -19,7 +19,7 @@ export  async function handle(req:NextRequest ,res:NextResponse) {
         password:hashedPassword
     }
    
-    // const user = await prisma.user.create({
+   //  const user = await prisma.user.create({
     //   data: dataUser,
     // });
 
@@ -29,4 +29,3 @@ export  async function handle(req:NextRequest ,res:NextResponse) {
     return res.status(500).json({ message: 'Internal server error' });
   }
 }
-export {handle as POST}
