@@ -4,7 +4,7 @@ import { useState, ChangeEvent, FormEvent } from 'react';
 
 const LoginLogoutEmail = () => {
 
-    const isShowSpin = true
+    const isShowSpin = false
     interface FormData {
         email: string;
         password: string;
@@ -27,7 +27,7 @@ const LoginLogoutEmail = () => {
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
+        console.log('submit fomr')
         const formDataToSend = new FormData();
         formDataToSend.append('email', formData.email);
         formDataToSend.append('password', formData.password);
@@ -47,6 +47,7 @@ const LoginLogoutEmail = () => {
         } catch (error) {
             console.error('Error:', error);
         }
+        
     };
 
     return (
