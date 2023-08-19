@@ -8,7 +8,7 @@ export  async function POST(req:NextRequest ,res:NextResponse) {
 
   const { email, password } = await req.json()
     console.log('data',email,password)
-  try {
+  
     const hashedPassword = await bcrypt.hash(password, 10) ;
     type DataUser={
         email:string,
@@ -23,9 +23,16 @@ export  async function POST(req:NextRequest ,res:NextResponse) {
     //   data: dataUser,
     // });
 
-    return res.status(201).json({ message: 'User registered successfully' });
-  } catch (error) {
-    console.error('Error registering user:', error);
-    return res.status(500).json({ message: 'Internal server error' });
-  }
+    return new Response(
+    JSON.stringify({
+      name: 'Jim Halpert',
+    }),
+    {
+      status: 200,
+      headers: {
+        'content-type': 'application/json',
+        'cache-control': 'public, s-maxage=1200, stale-while-revalidate=600',
+      },
+    }
+  )
 }
