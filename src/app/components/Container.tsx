@@ -10,6 +10,7 @@ const Container = ({children}:Children) => {
 			className='
 				xl:px-20 
 			' 
+			//Change 10_13_2023
 		>
 			{children}
 		</div>
